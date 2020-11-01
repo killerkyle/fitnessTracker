@@ -12,15 +12,15 @@ router.get("/stats", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/stats.html"))
 });
 
-router.get("/api/workouts/range", (req, res) => {
-    Workout.find()
-      .then((workoutdb) => {
-        res.json(workoutdb);
-      })
-      .catch((err) => {
-        res.status(404).json(err);
-      });
-  });
+router.get("/api/workouts/range", function(req, res) {
+    Workout.find({})
+    .then(data => {
+        res.json(data);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
 
 router.get("/api/workouts", function(req, res) {
     Workout.find({})
