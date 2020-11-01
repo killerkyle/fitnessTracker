@@ -12,7 +12,7 @@ router.get("/stats", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/stats.html"))
 });
 
-router.get("/api/workouts/range", function(req, res) {
+router.get("/api/workout/range", function(req, res) {
     Workout.find({})
     .then(data => {
         res.json(data);
@@ -22,7 +22,7 @@ router.get("/api/workouts/range", function(req, res) {
     });
 });
 
-router.get("/api/workouts", function(req, res) {
+router.get("/api/workout", function(req, res) {
     Workout.find({})
     .then(workoutDataBase => {
         workoutDataBase.forEach(totalWorkoutTime => {
@@ -39,7 +39,7 @@ router.get("/api/workouts", function(req, res) {
     });
 });
 
-router.post("/api/workouts", function(req, res) {
+router.post("/api/workout", function(req, res) {
     Workout.create({})
     .then(data => {
         res.json(data);
@@ -49,7 +49,7 @@ router.post("/api/workouts", function(req, res) {
     });
 });
 
-router.put("/api/workouts/:id", function(req, res) {
+router.put("/api/workout/:id", function(req, res) {
     Workout.update({_id: mongojs.ObjectId(req.params.id)}, {$push: {exercises: req.body}})
         .then(data => {
             res.json(data);
